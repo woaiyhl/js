@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 模拟sort方法: 冒泡排序+双重for循环+解构赋值
+        Array.prototype.mysort = function (fn) {
+            for (var i = 0; i < this.length; i++) {
+                for(var j = 0; j < this.length - 1 - i;j++) {
+                    if(fn(this[j],this[j+1]) > 0) {
+                        [this[j+1],this[j]] = [this[j],this[j+1]]
+                    }
+                }
+            }
+        }
+        var arr = [2,4,1,3,5];
+        arr.mysort((a,b) => a-b);
+        console.log(arr);
+        
+        function fn(n) {
+            if(n == 1 || n == 2) {
+                return 1
+            }
+            return fn(n-1) + fn(n-2);
+        }
+        console.log(fn(6));
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* Promise.resolve().then(() => {
+        console.log('Promise1');//第一个宏任务执行完后的微任务
+        setTimeout(() => {
+        console.log('setTimeout2')
+        }, 0) //第三个宏任务
+        });
+        setTimeout(() => {
+        console.log('setTimeout1');//第二个宏任务中的代码
+        Promise.resolve().then(() => {
+        console.log('Promise2')
+        }) //第二个宏任务执行完后的微任务
+        }, 0);
+        console.log('start'); //第一个宏任务中的js主线程代码 */
+
+        /*         console.log('start');
+                setTimeout(() => {
+                    console.log('setTimeout');
+                    
+                },0)
+                new Promise((resolve,reject) => {
+                    for (var i = 0;i < 5;i++) {
+                        console.log(i);
+                        resolve();
+                    }
+                }).then(() => {
+                    console.log('promise');
+                    
+                })
+                console.log('end'); */
+
+        /*         async function test() {
+                    console.log(100)
+                    let x = await 200
+                    console.log(x)
+                    console.log(200)
+                }
+                console.log(0)
+                test()
+                console.log(300) */
+                
+        console.log('start');
+
+        setTimeout(function () {
+            console.log(1);
+        }, 0);
+
+        Promise.resolve().then(function () {
+            console.log(2);
+        }).then(function () {
+            console.log(3);
+        });
+        setTimeout(() => {
+            console.log(4);
+            Promise.resolve().then(() => {
+                console.log(5)
+            });
+        });
+        new Promise((resolve, reject) => {
+            console.log(6),
+                resolve(7)
+        }).then((data) => {
+            console.log(data);
+        })
+        console.log('end');
+    </script>
+</body>
+
+</html>

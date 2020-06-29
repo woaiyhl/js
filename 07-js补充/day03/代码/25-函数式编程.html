@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 函数式编程：
+    // 通过函数对数据进行转换
+    // 通过串联多个函数来求结果
+    var string = 'functional-programming-is-great';
+    var result = string
+      .split('-')
+      .map(v => v.slice(0, 1).toUpperCase() + v.slice(1))
+      .join(' ');
+      console.log(result);
+      
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    console.log('start');
+
+    // for (var i = 0; i < 3; i++) {
+
+    //   (function(i){
+    //     setTimeout(function () {
+    //       console.log(i);
+    //     }, 0);
+    //   })(i)
+
+
+    // }
+
+    // for (let i = 0; i < 3; i++) {
+    //   // 执行一次产生一个块， 就是一个作用域，这个作用域和下一次执行产生的块 互不影响。
+    //   setTimeout(function () {
+    //     console.log(i);
+    //   }, 0);
+
+
+    // }
+
+    for (var i = 0; i < 3; i++) {
+      var a = function () {
+        var j = i;
+        setTimeout(function () {
+          console.log(j);
+        }, 1000)
+      }
+      a();
+    }
+
+    console.log('end');
+  </script>
+</body>
+
+</html>

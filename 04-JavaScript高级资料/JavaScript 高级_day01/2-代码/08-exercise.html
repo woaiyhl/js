@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // class Person {
+        //     constructor(uname,age) {
+        //         this.uname = uname
+        //         this.age = age
+        //     }
+        //     sing() {
+        //         console.log('sing a song ');
+        //     }
+        // }
+        // let p1 = new Person('lhw',23)
+        // let p2 = new Person('yhl',18)
+        // p1.sing()
+        // console.log(p1);
+        // console.log(p2);
+/*         function Star(uname,age,song) {
+            this.uname = uname;
+            this.age = age;
+            this.song = song;
+            this.sing = function () {
+                console.log(this.uname + '会唱' + this.song);
+            }
+            // this.dance = function () {
+            //     console.log(111);
+            // }
+        }
+        Star.prototype.dance = function () {
+            console.log(1111);
+        } */ //将共享的方法放在构造函数中的原型对象上，所有实例使用该方法只需开辟一个内存空间,避免了构造函数中方法（函数--复杂数据类型)浪费内存的问题
+        // new 的作用(利用构造函数创建对象的过程也被称为对象的实例化)
+        // 1.new 构造函数会创建一个空的实例对象
+        // 2.构造函数中的this会指向该空对象
+        // 3.执行构造函数中代码，给这个空对象添加属性和方法
+        // 4.返回这个对象
+/*         let lhw = new Star('卢华伟',23,'李香兰')
+        lhw.sing()
+        console.log(lhw['age'],lhw['uname']);
+        let yhl = new Star('尹红林',18,'小心心')
+        yhl.sing() 
+        console.log(lhw.dance === yhl.dance); 
+        console.log(lhw.__proto__ === Star.prototype,111);//实例对象系统会自己添加一个__proto__属性指向构造函数中的原型对象(即__proto__对象原型和原型对象prototype是等价的)
+        console.log(Star.prototype.constructor);
+        console.log(lhw.__proto__.constructor);
+        // constructor主要用来记录该对象引用于哪个构造函数,它可以让原型对象重新指向原来的构造函数
+        console.log(Star.prototype.__proto__ === Object.prototype,2222 );
+        console.log(Object.prototype.__proto__,333);
+        Star.prototype.sex = '男'
+        console.log(lhw.toString(),444);
+        lhw.sex = '女'
+        console.log(lhw.sex,555); */
+        
+        function Father(uname,age) {
+            this.uname = uname
+            this.age = age
+        }
+        Father.prototype.money = function () {
+            console.log(2000);
+        }
+        function Son(uname,age,score) {
+            Father.call(this,uname,age)
+            this.score = score
+        }
+        Son.prototype = Father.prototype
+        Son.prototype.exam = function () {
+            console.log('考试啊');
+        }
+        let son1 = new Son('lhw',18,100)
+        console.log(son1);
+        let father1 = new Father()
+        console.log(father1);
+    </script>
+</body> 
+</html>

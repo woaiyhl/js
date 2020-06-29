@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function Person() {}
+
+        // var p1 = new Person();
+        // // 按照原有的原型结构来创建
+        // // p1 -> 原来的 Person.prototype -> Object.prototype -> null
+
+        // // 设置原型
+        // Person.prototype = {};
+        // console.log(p1 instanceof Person); // 判断 {} 是否在 p1 的原型链上 
+
+        function Person() {}
+
+        // 设置原型
+        Person.prototype = {};
+
+        var p1 = new Person();
+        // 按照现在的原型链创建
+        // p1 -> 新的 Person.prototype. 即 {} -> Object.prototype -> null
+
+        console.log(p1 instanceof Person); //判断 {} 是否在 p1 的原型链上
+
+        // 所以要先设置原型属性，再创建实例对象。
+        /*  
+                var A = function () {};
+        A.prototype.n = 1;
+        var b = new A();
+        A.prototype = {
+            n: 2,
+            m: 3
+        };
+        var c = new A();
+        console.log(b.n);
+        console.log(b.m);
+        console.log(c.n);
+        console.log(c.m);
+        */
+
+    </script>
+</body>
+
+</html>

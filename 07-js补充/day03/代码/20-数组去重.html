@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr = [1,2,3,1,2,3,4];
+        // 1.双重for 循环;
+        function unique (arr) {
+            if(!Array.isArray(arr)) {
+                console.log('type error');
+                return               
+            }
+            var res = [arr[0]];
+            for(var i = 1;i < arr.length;i++) {
+                var flag = true;
+                for(j = 0; j < res.length;j++) {
+                    if(arr[i] === res[j]) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if(flag) {
+                    res.push(arr[i]);
+                }
+            }
+            return res;
+        }
+        console.log(unique(arr));
+        
+        // 2.indexOf;
+            function unique(arr) {
+                let res = [];
+                for(let i = 0; i < arr.length;i++) {
+                    if(res.indexOf(arr[i]) === -1) {
+                        res.push(arr[i]);
+                    }
+                }
+                return res;
+            }
+            console.log(unique(arr));
+            
+        // 3.indexOf + filter;
+        function unique(arr) {
+            let res = arr.filter((item,index,arr) => 
+                arr.indexOf(item) === index
+            )
+            return res;
+        }
+        console.log(unique(arr));
+        
+        // 4.sort;
+        function unique(arr) {
+            var arr = arr.sort();
+            var res = [];
+            for(var i = 0;i < arr.length;i++) {
+                if(arr[i] !== arr[i-1]) {
+                    res.push(arr[i]);
+                }
+            }
+            return res;
+        }
+        console.log(unique(arr));
+        
+        // 5.sort + filter
+            function unique(arr) {
+                var arr = arr.sort();
+                let res = arr.filter((item,index,arr) =>
+                    item !== arr[index-1]
+                )
+                return res;
+            }
+            console.log(unique(arr));
+        //  6.Set + 解构赋值
+                function unique(arr) {
+                    return [...new Set(arr)];
+                }
+                console.log(unique(arr));
+        // 7.Set + Array.from
+                function unique(arr) {
+                    return Array.from(new Set(arr));
+                }
+                console.log(unique(arr));
+        // 8.Map 
+                function unique(arr) {
+                    let res = [];
+                    let map = new Map();
+                    for(let i = 0;i < arr.length;i++) {
+                        if(!map.has(arr[i])) {
+                            map.set(arr[i]);
+                            res.push(arr[i]);
+                        }
+                    }
+
+                    return res;
+                }
+                console.log(unique(arr));
+        // 9.includes
+                    function unique(arr) {
+                        let res = [];
+                        for(var i = 0; i < arr.length; i++) {
+                            if(!res.includes(arr[i])) {
+                                res.push(arr[i]);
+                            }
+                        }
+                        /* 
+                                                
+                         */
+                        return res;
+                    }
+                    console.log(unique(arr));
+                    
+        //  10.reduce 
+        function unique(arr) {
+        // reduce : 第一个是函数，第二个参数会传给第一次回调的prev;
+        return arr.reduce((prev,next)=>{
+            // 该函数返回值是下一次执行的prev;
+            return prev.includes(next)?prev:[...prev,next];
+        },[])
+    }
+    console.log(unique(arr));   
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let apartments = [];
+        for (let i = 1; i <= 5; i++) {
+            let obj = {
+                name: `${i}户户型`,
+                area: `${i}户面积`,
+                property: `${i}户产权性质`,
+                purpose: `${i}户建筑用途`,
+                type: '',
+                size: '',
+                rights: '',
+                use: ''
+            }
+            apartments.push(obj);
+        }
+        console.log(apartments);
+    </script>
+
+</body>
+
+</html>
