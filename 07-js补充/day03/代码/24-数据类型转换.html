@@ -12,9 +12,15 @@
     <script>
         数据类型转换:
         console.log(Number('4a')); //NaN
+        console.log(Number(true)); //1
+        console.log(Number(false)); //0
+        console.log(Number(null)); //0
+        console.log(Number(undefined)); //NaN
+        console.log(Number('011')); //11 字符串'011'前导0会被忽略
         console.log(parseFloat('4a'));//4
         console.log(parseInt('4a')); // 4
         console.log(parseInt('a4')); //NaN
+        console.log(isNaN(true), '非number类型判断');
         //'=='的隐式转换:
         console.log(!0); //true
         console.log(!'0'); //false 
@@ -30,23 +36,30 @@
         console.log({} == {});  //false    
         console.log('true' == true); //Number('true') = NaN,Number(true) = 1; //false;
         //引用类型的比较
-        var a = [1,2,3];
-        var b = [1,2,3];
+        var a = [1, 2, 3];
+        var b = [1, 2, 3];
         console.log(a === b);    //false;引用类型的比较，不是比较值，而是比较是否指向同一个地址
         // 综合:
         var str = 1 + 2 + 'abc';
         console.log(str);
 
         var a; //undefined
-        var b = a*0; 
+        var b = a * 0;
         console.log(b); //NaN
         console.log(b === b); //false
-        if(b === b) {
-            console.log(b*2 + "2" - 0 + 4);  //  6     
+        if (b === b) {
+            console.log(b * 2 + "2" - 0 + 4);  //  6     
         } else {
-            console.log(!b*2 + "2" - 0 + 4);   //26      
+            console.log(!b * 2 + "2" - 0 + 4);   //26      
         }
-        
+
+/*      var a = new String('1');
+        var b = new String('1');
+        console.log(a == b); // false
+
+        var a = new Number(1);
+        var b = new Number(1);
+        console.log(a == b); // false */
     </script>
 </body>
 

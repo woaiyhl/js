@@ -12,21 +12,7 @@
   <input type="text" id="txt" />
   <span id="sp"></span>
   <script>
-    /*         var obj = {};
-        Object.defineProperty(obj,"hello",{
-            get() {
-                console.log('调用了get方法');
-                
-            },
-            set(val) {
-                console.log('调用了set方法: 参数是' + val);
-                
-            }
-        })
-        obj.hello;
-        obj.hello = '123'; */
-
-
+/*     // vue2中利用Object.defineProperty()实现双向数据绑定
     var txt = document.getElementById('txt'),
       sp = document.getElementById('sp'),
       obj = {}
@@ -44,7 +30,43 @@
     // 监听文本框的改变 当文本框输入内容时 改变obj.msg
     txt.addEventListener('input', function (event) {
       obj.msg = event.target.value
+    }) */
+
+
+    // 2.Object.defineProperty()的使用
+    const nameObj = {
+      firstName: 'A',
+      lastName: 'B'
+    }
+    Object.defineProperty(nameObj,'fullName',{
+      //访问描述:get、set
+      // get:当读取对象此属性值时自动调用, 将函数返回的值作为属性值, this为obj
+      get() {
+        return this.firstName + '-' + this.lastName
+      },
+      // set:当修改了对象的当前属性值时自动调用, 监视当前属性值的变化, 修改相关的属性, this为obj
+      set(value) {
+        const names = value.split('-')
+        this.firstName = names[0]
+        this.lastName = names[1]
+      }
     })
+    console.log(nameObj.fullName);
+    nameObj.fullName = 'C-D'
+    console.log(nameObj.firstName,nameObj.lastName);
+
+    // 3.数据描述(configurable、enumerable、value、writable)
+    let obj2 = {}
+    Object.defineProperty(obj2,'fullName2',{
+      configurable: false, //是否可以重新define
+      enumerable: true, //是否可以枚举(for...in /Object.keys())
+      value: 'A-B',//初始化值
+      writable: false //value是否可以更改
+    })
+    console.log(obj2.fullName2); //A-B
+    obj2.fullName2 = 'E-F'
+    console.log(obj2.fullName2); //A-B
+
   </script>
 </body>
 

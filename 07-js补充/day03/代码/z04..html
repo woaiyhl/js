@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var A = function () { };
+        // A.prototype.n = 1;
+        // var b = new A();
+        // A.prototype = {
+        //     n: 2,
+        //     m: 3
+        // };
+        // var c = new A();
+        // console.log(b.n);
+        // console.log(b.m);
+        // console.log(c.n);
+        // console.log(c.m);
+
+        var num1        // var num2 = 66;
+        function fn(num, num1) {
+            num = 100;
+            num1 = 100;
+            num2 = 100;
+            console.log(num); //
+            console.log(num1);  // 
+            console.log(num2); //100      
+        }
+        fn(num1, num2);
+        console.log(num1); //55
+        console.log(num2); //100
+        console.log(num); //error
+
+        // var name = '李四'
+        // var foo = {
+        //     name: "张三",
+        //     logName: function (age) {
+        //         console.log(this.name, age);
+        //     }
+        // }
+        // var fooNew = foo.logName;
+        // var fooNewBind = foo.logName.bind(foo);
+        // fooNew(10); //李四，10
+        // fooNewBind(11); //张三  11
+
+
+        // function test(person) {
+        //     person.age = 26
+        //     person = {
+        //         name: 'hzj',
+        //         age: 18
+        //     }
+        //     return person
+        // }
+        // const p1 = {
+        //     name: 'fyq',
+        //     age: 19
+        // }
+        // const p2 = test(p1)
+        // console.log(p1) // -> ?
+        // console.log(p2) // -> ?     
+        // console.log(typeof Symbol());
+        // console.log({
+        //     a: 1
+        // } == true); //false
+        // console.log({
+        //     a: 1
+        // } == "[object Object]"); //true
+        // function f1() {
+        //     var a = 2
+
+        //     function f2() {
+        //         console.log(a); //2
+        //     }
+        //     return f2;
+        // }
+        // var x = f1();
+        // x();
+
+        // var f3;
+        // function f1() {
+        //     var a = 2
+        //     f3 = function () {
+        //         console.log(a);
+        //     }
+        // }
+        // f1();
+        // f3();
+    </script>
+</body>
+
+</html>

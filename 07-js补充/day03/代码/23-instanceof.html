@@ -18,7 +18,7 @@
 
         // // 设置原型
         // Person.prototype = {};
-        // console.log(p1 instanceof Person); // 判断 {} 是否在 p1 的原型链上 
+        // console.log(p1 instanceof Person); // 判断 {} 是否在 p1 的原型链上  //false
 
         function Person() {}
 
@@ -33,7 +33,7 @@
 
         // 所以要先设置原型属性，再创建实例对象。
         /*  
-                var A = function () {};
+        var A = function () {};
         A.prototype.n = 1;
         var b = new A();
         A.prototype = {

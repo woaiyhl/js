@@ -16,16 +16,16 @@
         var n = 1;
 
         function f1() {
-            console.log(n);
+            console.log(n); 
         }
 
         function f2() {
-            console.log(n);
+            console.log(n); //1
             n = 2;
-            f1();
-            console.log(n);
+            f1();  //2
+            console.log(n); //2
         }
-        f2();
+        f2(); 
 
         // 第二题
         var m = 1;
@@ -57,7 +57,7 @@
             console.log(b);
 
             function b() {
-                console.log(b);
+                console.log(b); 
             }
 
             b();

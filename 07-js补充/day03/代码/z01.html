@@ -10,156 +10,67 @@
 
 <body>
     <script>
-        //       var num1        // var num2 = 66;
-        // function fn(num,num1) {
-        //     num = 100;
-        //     num1 = 100;
-        //     num2 = 100;
-        //     console.log(num); //
-        //     console.log(num1);  //
-        //     console.log(num2); //100      
-        // }
-        // fn(num1,num2);
-        // console.log(num1); //55
-        // console.log(num2); //100
-        // console.log(num); //error
+        // 1.es5继承
+/* 
+        function Father() {
+            this.property = true;
+        }
+        Father.prototype.getFatherValue = function () {
+            return this.property;
+        }
 
-        // var name = '李四'
-        // var foo = {
-        //     name: "张三",
-        //     logName: function (age) {
-        //         console.log(this.name, age);
-        //     }
-        // }
-        // var fooNew = foo.logName;
-        // var fooNewBind = foo.logName.bind(foo);
-        // fooNew(10); //李四，10
-        // fooNewBind(11); //张三  11
-        // var sum = [{
-        //     count: 1
-        // }, {
-        //     count: 2
-        // }, {
-        //     count: 3
-        // }].reduce((p, e) => p + (e.count), 0)
-        // console.log(sum);
+        function Son() {
+            this.sonProperty = false;
+        }
+        //继承 Father
+        Son.prototype = new Father(); //Son.prototype被重写,导致Son.prototype.constructor也一同被重写
+        Son.prototype.getSonVaule = function () {
+            return this.sonProperty;
+        }
+        var instance = new Son();
+        alert(instance.getFatherValue()); //true
 
-        // function test(person) {
-        //     person.age = 26
-        //     person = {
-        //         name: 'hzj',
-        //         age: 18
-        //     }
-        //     return person
-        // }
-        // const p1 = {
-        //     name: 'fyq',
-        //     age: 19
-        // }
-        // const p2 = test(p1)
-        // console.log(p1) // -> ?
-        // console.log(p2) // -> ?     
-        // console.log(typeof Symbol());
-        // console.log({
-        //     a: 1
-        // } == true); //false
-        // console.log({
-        //     a: 1
-        // } == "[object Object]"); //true
-        // function f1() {
-        //     var a = 2
+        function Father() {
+            this.colors = ["red", "blue", "green"];
+        }
 
-        //     function f2() {
-        //         console.log(a); //2
-        //     }
-        //     return f2;
-        // }
-        // var x = f1();
-        // x();
+        function Son() {
+            Father.call(this); //继承了Father,且向父类型传递参数
+        }
+        var instance1 = new Son();
+        instance1.colors.push("black");
+        console.log(instance1.colors); //"red,blue,green,black"
 
-        // var f3;
-        // function f1() {
-        //     var a = 2
-        //     f3 = function () {
-        //         console.log(a);
-        //     }
-        // }
-        // f1();
-        // f3();
-        // var a = new String('1');
-        // var b = new String('1');
-        // console.log(a == b); // false
+        var instance2 = new Son();
+        console.log(instance2.colors); //"red,blue,green" 可见引用类型值是独立的
+        function Father(name) {
+            this.name = name;
+            this.colors = ["red", "blue", "green"];
+        }
+        Father.prototype.sayName = function () {
+            alert(this.name);
+        };
 
-        // var a = new Number(1);
-        // var b = new Number(1);
-        // console.log(a == b); // false
-        // var a = 2;
-        // (function IIFE() {
-        //     // 输出2
-        //     console.log(a);
-        // })();
-        // for (var i = 1; i <= 5; i++) {
-        //     setTimeout(function timer(j) {
-        //         console.log(j)
-        //     }, 0, i)
-        // }
-        // function Father() {
-        //     this.property = true;
-        // }
-        // Father.prototype.getFatherValue = function () {
-        //     return this.property;
-        // }
+        function Son(name, age) {
+            Father.call(this, name); //继承实例属性，第一次调用Father()
+            this.age = age;
+        }
+        Son.prototype = new Father(); //继承父类方法,第二次调用Father()
+        Son.prototype.sayAge = function () {
+            alert(this.age);
+        }
+        var instance1 = new Son("louis", 5);
+        instance1.colors.push("black");
+        console.log(instance1.colors); //"red,blue,green,black"
+        instance1.sayName(); //louis
+        instance1.sayAge(); //5
 
-        // function Son() {
-        //     this.sonProperty = false;
-        // }
-        // //继承 Father
-        // Son.prototype = new Father(); //Son.prototype被重写,导致Son.prototype.constructor也一同被重写
-        // Son.prototype.getSonVaule = function () {
-        //     return this.sonProperty;
-        // }
-        // var instance = new Son();
-        // alert(instance.getFatherValue()); //true
+        var instance1 = new Son("zhai", 10);
+        console.log(instance1.colors); //"red,blue,green"
+        instance1.sayName(); //zhai
+        instance1.sayAge(); //10 */
 
-        // function Father() {
-        //     this.colors = ["red", "blue", "green"];
-        // }
-
-        // function Son() {
-        //     Father.call(this); //继承了Father,且向父类型传递参数
-        // }
-        // var instance1 = new Son();
-        // instance1.colors.push("black");
-        // console.log(instance1.colors); //"red,blue,green,black"
-
-        // var instance2 = new Son();
-        // console.log(instance2.colors); //"red,blue,green" 可见引用类型值是独立的
-        // function Father(name) {
-        //     this.name = name;
-        //     this.colors = ["red", "blue", "green"];
-        // }
-        // Father.prototype.sayName = function () {
-        //     alert(this.name);
-        // };
-
-        // function Son(name, age) {
-        //     Father.call(this, name); //继承实例属性，第一次调用Father()
-        //     this.age = age;
-        // }
-        // Son.prototype = new Father(); //继承父类方法,第二次调用Father()
-        // Son.prototype.sayAge = function () {
-        //     alert(this.age);
-        // }
-        // var instance1 = new Son("louis", 5);
-        // instance1.colors.push("black");
-        // console.log(instance1.colors); //"red,blue,green,black"
-        // instance1.sayName(); //louis
-        // instance1.sayAge(); //5
-
-        // var instance1 = new Son("zhai", 10);
-        // console.log(instance1.colors); //"red,blue,green"
-        // instance1.sayName(); //zhai
-        // instance1.sayAge(); //10
+        // 2.es6类继承
         class Person {
             constructor(myName, myAge) {
                 this.name = myName;

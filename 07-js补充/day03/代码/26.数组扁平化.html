@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [1,[2,[3,[4,5]]],6]
+        // 法一： flat
+        const res = arr.flat(Infinity)
+        console.log(res,'111');
+        // 法二：reduce + 递归
+        const flatten = arr => {
+            return arr.reduce((pre,cur) => {
+                return pre.concat(Array.isArray(cur) ? flatten(cur):cur)
+            },[])
+        }
+        const res1 = flatten(arr)
+        // 
+    </script>
+</body>
+</html>
