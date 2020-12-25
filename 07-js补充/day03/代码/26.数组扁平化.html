@@ -2,37 +2,37 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
-    <script>
-        let arr = [1, [2, [3, [4, 5]]], 6]
-        // 法一： flat
-        const res = arr.flat(Infinity)
-        console.log(res, '111');
-        // 法二：reduce + 递归
-        const flatten = arr => {
-            return arr.reduce((pre, cur) => {
-                return pre.concat(Array.isArray(cur) ? flatten(cur) : cur)
-            }, [])
+  <script>
+    let arr = [1, [2, [3, [4, 5]]], 6]
+    // 法一： flat
+    const res = arr.flat(Infinity)
+    console.log(res, '111');
+    // 法二：reduce + 递归
+    const flatten = arr => {
+      return arr.reduce((pre, cur) => {
+        return pre.concat(Array.isArray(cur) ? flatten(cur) : cur)
+      }, [])
+    }
+    const res1 = flatten(arr)
+    // 法三：push + 递归
+    let res2 = []
+    const fn = arr => {
+      for (let i = 0; i < arr.length; i++) {
+        if (Array.isArray(arr[i])) {
+          fn(arr[i])
+        } else {
+          res2.push(arr[i])
         }
-        const res1 = flatten(arr)
-        // 法三：push + 递归
-        let res2 = []
-        const fn = arr => {
-            for (let i = 0; i < arr.length; i++) {
-                if (Array.isArray(arr[i])) {
-                    fn(arr[i])
-                } else {
-                    res2.push(arr[i])
-                }
-            }
-        }
-        fn(arr)
-    </script>
+      }
+    }
+    fn(arr)
+  </script>
 </body>
 
 </html>

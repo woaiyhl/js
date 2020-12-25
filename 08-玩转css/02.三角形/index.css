@@ -1,0 +1,43 @@
+.triangle {
+  border: 50px solid transparent;
+  width: 0;
+  height: 0;
+  margin-bottom: 20px;
+}
+
+.triangle.left {
+  border-right-color: #f66;
+}
+
+.triangle.right {
+  border-left-color: #f66;
+}
+
+.triangle.top {
+  border-bottom-color: #f66;
+}
+
+.triangle.bottom {
+  border-top-color: #f66;
+}
+
+.triangle.left-top {
+  border-left-color: #f66;
+  border-top-color: #f66;
+}
+
+.triangle.left-bottom {
+  border-left-color: #f66;
+  border-bottom-color: #f66;
+}
+
+.triangle.right-top {
+  border-right-color: #f66;
+  border-top-color: #f66;
+}
+
+.triangle.right-bottom {
+  border-right-color: #f66;
+  border-bottom-color: #f66;
+}
+/*# sourceMappingURL=index.css.map */

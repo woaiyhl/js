@@ -1,0 +1,34 @@
+.triangle {
+  border: 50px solid transparent;
+  width: 0;
+  height: 0;
+  margin-bottom: 20px;
+  &.left {
+    border-right-color: #f66;
+  }
+  &.right {
+    border-left-color: #f66;
+  }
+  &.top {
+    border-bottom-color: #f66;
+  }
+  &.bottom {
+    border-top-color: #f66;
+  }
+  &.left-top {
+    border-left-color: #f66;
+    border-top-color: #f66;
+  }
+  &.left-bottom {
+    border-left-color: #f66;
+    border-bottom-color: #f66;
+  }
+  &.right-top {
+    border-right-color: #f66;
+    border-top-color: #f66;
+  }
+  &.right-bottom {
+    border-right-color: #f66;
+    border-bottom-color: #f66;
+  }
+}
