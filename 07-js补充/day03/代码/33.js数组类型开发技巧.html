@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  // Array skills
+  // 1.过滤空值(空值：undefined、null、""、0、false、NaN)
+  const arr = [undefined, null, "", 0, false, NaN, 1, 2].filter(Boolean);
+  console.log(arr);
+  // arr => [1, 2]
+
+  //2.统计数组成员个数
+  const arrNum = [0, 1, 1, 2, 2, 2];
+  const count = arrNum.reduce((t, v) => {
+    t[v] = t[v] ? ++t[v] : 1;
+    return t;
+  }, {});
+  console.log(count, 'tttt');
+// count => { 0: 1, 1: 2, 2: 3 }
+
+</script>
+
+</html>
