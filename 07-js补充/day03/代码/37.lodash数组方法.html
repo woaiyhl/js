@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <meta http-equiv="Content-Security-Policy" </head>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+
+<body>
+  <script>
+    // 1. _.chunk(arr,size) 
+    // 将数组（array）拆分成多个 size 长度的区块，并将这些区块组成一个新数组。 如果array 无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。
+    let categories = [1, 3, 4, 5, 1, 2, 3, 5, 6, 'a', 2]
+    let chunkArr = _.chunk(categories, 3)
+    console.log(chunkArr, categories, 'rrr');
+
+    // function chunk(array, size = 1) {
+    //   size = Math.max(toInteger(size), 0)
+    //   const length = array == null ? 0 : array.length
+    //   if (!length || size < 1) {
+    //     return []
+    //   }
+    //   let index = 0
+    //   let resIndex = 0
+    //   const result = new Array(Math.ceil(length / size))
+
+    //   while (index < length) {
+    //     result[resIndex++] = slice(array, index, (index += size))
+    //   }
+    //   return result
+    // }
+    // [[1,3,4],[5,1,2],[3,5,6],['a',2]]
+
+    // 2. _.compact()
+    // 创建一个新数组，包含原数组中所有的非假值元素。例如false, null,0, "", undefined, 和 NaN 都是被认为是“假值”。
+    let compact = [0, 1, false, 2, '', 3]
+    let compactArr = _.compact(compact)
+    console.log(compactArr, 'cccc');
+    // [1,2,3]
+
+    // 3. _.difference
+    let arr1 = [3, 2, 1, 4]
+    let arr2 = [4, 2]
+    let differenceArr = _.difference(arr1, arr2)
+    // let differenceArr = []
+    // for (let val1 of arr1) {
+    //   if (!arr2.includes(val1)) {
+    //     differenceArr.push(val1)
+    //   }
+    // }
+    console.log(differenceArr, 'ddd');
+    // [3,1]
+
+    // 4. _.differenceBy
+    console.log(_.differenceBy([3.1, 2.2, 1.3], [3.4, 2.5], Math.floor));
+
+    // 5. _.drop(array, [n=1])
+    // 创建一个切片数组，去除array前面的n个元素。(n默认值为1)
+    console.log(_.drop([1, 2, 3]));
+    // => [2, 3]
+    console.log(_.drop([1, 2, 3], 2));
+    // => [3]
+    console.log(_.drop([1, 2, 3], 5));
+    // => []
+    console.log(_.drop([1, 2, 3], 0));
+    // => [1, 2, 3]
+
+    //  6. _.fromPairs (这个方法返回一个由键值对pairs构成的对象)
+    console.log(_.fromPairs([['fred', 30], ['barney', 40]]));
+    // => { 'fred': 30, 'barney': 40 }
+
+    // 7. _.intersection([arrays])
+    console.log(_.intersection([2, 1], [4, 2], [1, 2]));
+    // => [2]
+
+  </script>
+</body>
+
+</html>
