@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1
+    class Container {
+      constructor(value, text) {
+        this.value = value;
+        this.text = text;
+      }
+    }
+    const FileTypes = {
+      jpg: new Container("1", "png"),
+      mp4: new Container("2", "avi"),
+      pdf: new Container("3", "pdf"),
+    };
+    // 对象键 []包裹的是个变量，es6的加强写法
+    const FileBaseTypes = {
+      [FileTypes.jpg.value]: new Container([FileTypes.jpg.value], "data:image/png;base64,"),
+      [FileTypes.mp4.value]: new Container([FileTypes.mp4.value], "data:video/avi;base64,"),
+      [FileTypes.pdf.value]: new Container([FileTypes.pdf.value], "data:application/pdf;base64,"),
+    };
+
+    // 2
+    deepCopyRecords.forEach((item) => {
+      delete item.tableHeads
+      for (let k in item) {
+        if (k === 'recentMonths') {
+          item[k].forEach((i) => {
+            let value = i.showStatus == 1 ? '已披露' : '未披露'
+            // 对象字面量加强写法 [i.month] --- i.month是个变量
+            item[i.month] = value
+            if (item[i.month]) {
+              delete item.recentMonths
+            }
+          })
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
