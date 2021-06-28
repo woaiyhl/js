@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // includes、startsWith、endsWith(返回boolean)
+      let s = 'Hello World!'
+      console.log(s.includes('o')) //true
+      console.log(s.startsWith('He')) //true
+      console.log(s.startsWith('Hello')) //true
+      console.log(s.endsWith('!')) //true
+      console.log(s.includes('World', 5)) //true
+      console.log(s.startsWith('Hello', 5)) //false
+      console.log(s.endsWith('Hello', 5)) //true
+
+      // repeat(返回一个新的字符串)
+      let a = 'hello'.repeat(3)
+      console.log(a)
+
+      //padStart、padEnd(返回一个新的字符串)
+      let b = '9'.padStart(2, '0')
+      console.log(b)
+      let c = 'x'.padStart(3, 'x')
+      console.log(c)
+      let d = 'x'.padEnd(4, '0')
+      console.log(d)
+
+      //trimStart、 trimEnd
+      const e = '  abc  '
+      console.log(e.trim())
+      console.log(e.trimStart())
+      console.log(e.trimEnd())
+
+      // replace、replaceAll
+
+      // replace()不改变原字符串、会返回一个新的字符串
+      let str = 'aabbcc'.replace('b', '_')
+      console.log(str)
+      let str1 = 'aabbcc'.replace(/b/g, '_')
+      console.log(str1)
+      let str3 = 'aabbcc'.replaceAll('b', '*')
+      console.log(str3)
+    </script>
+  </body>
+</html>

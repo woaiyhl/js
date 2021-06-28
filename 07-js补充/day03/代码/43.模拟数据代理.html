@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // data数据代理到vm实例中
+      let _data = { msg: 'woaini' }
+      let vm = { a: 1 }
+      Object.defineProperty(vm, 'msg', {
+        get() {
+          return _data.msg
+        },
+        set(value) {
+          _data.msg = value
+        },
+      })
+      vm.msg = 'wohenni '
+      console.log(_data)
+
+      // 模拟vue的computed
+    </script>
+  </body>
+</html>

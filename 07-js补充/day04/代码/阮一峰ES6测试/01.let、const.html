@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      {
+        let a = 1
+        var b = 2
+      }
+      console.log(b)
+      console.log(a) //Uncaught ReferenceError: a is not defined
+
+      var a = []
+      for (var i = 0; i < 10; i++) {
+        // debugger
+        a[i] = function () {
+          console.log(i)
+        }
+      }
+      a[6]() // 10
+
+      for (let i = 0; i < 3; i++) {
+        let i = 'abc'
+        console.log(i)
+      }
+
+      function f1() {
+        let n = 5
+        if (true) {
+          let n = 10
+        }
+        console.log(n, 'nnnnnnnn') // 5
+      }
+      f1()
+    </script>
+  </body>
+</html>

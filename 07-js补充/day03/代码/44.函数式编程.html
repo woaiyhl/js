@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 不可变性
+      // let student = {
+      //   firstName: 'testing',
+      //   lastName: 'testing',
+      //   marks: 500,
+      // }
+
+      // function changeName(student) {
+      //   // student.firstName = "testing11" //should not do it
+      //   // let copiedStudent = Object.assign({}, student) //浅拷贝
+      //   let copiedStudent = { ...student } //浅拷贝
+      //   copiedStudent.firstName = 'testing11'
+      //   return copiedStudent
+      // }
+
+      // console.log(changeName(student))
+
+      // console.log(student)
+
+      // 高阶函数
+      const isYoung = (age) => age < 25
+
+      const message = (msg) => 'He is ' + msg
+
+      function isPersonOld(age, isYoung, message) {
+        const returnMessage = isYoung(age) ? message('young') : message('old')
+        return returnMessage
+      }
+
+      // passing functions as an arguments
+      console.log(isPersonOld(13, isYoung, message))
+      // He is young
+    </script>
+  </body>
+</html>
