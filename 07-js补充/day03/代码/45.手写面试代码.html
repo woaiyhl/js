@@ -8,10 +8,43 @@
   </head>
   <body>
     <script>
-      // 判断各种数据类型
+      // 1.判断各种数据类型
       function isType(data) {
         return Object.prototype.toString.call(data).replace(/\[object (\w+)\]/, '$1')
       }
+
+      // 2.反转字符串
+      // 法一
+      function reverseStr(str) {
+        return str.split('').reverse().join('')
+      }
+      // 法二
+      function reverseStr2(str) {
+        let reverseArr = []
+        for (let index = str.length - 1; index >= 0; index--) {
+          reverseArr.push(str[index])
+        }
+        return reverseArr.join('')
+      }
+
+      // 3. js 去除字符串空格
+      var str = ' 6 6 '
+      var str_1 = str.replace(/\s*/g, '')
+      console.log(str_1) //66
+
+      var str = ' 6 6 '
+      var str_1 = str.replace(/^\s*|\s*$/g, '')
+      console.log(str_1) //6 6//输出左右侧均无空格
+
+      var str = ' 6 6 '
+      var str_1 = str.replace(/^\s*/, '')
+      console.log(str_1) //6 6 //输出右侧有空格左侧无空格
+
+      var str = ' 6 6 '
+      var str_1 = str.replace(/(\s*$)/g, '')
+      console.log(str_1) // 6 6//输出左侧有空格右侧无空格
+
+      // 4.
     </script>
   </body>
 </html>
