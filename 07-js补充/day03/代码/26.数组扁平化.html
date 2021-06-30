@@ -32,6 +32,15 @@
       }
     }
     fn(arr)
+    // 法四：while + ...(扩展运算符)
+    function flat(arr) {
+      // 循环数组中的元素判断元素是否为数组
+      while (arr.some(item => Array.isArray(item))) {
+        // 解构数组
+        arr = [].concat(...arr)
+      }
+      return arr
+    }
   </script>
 </body>
 
