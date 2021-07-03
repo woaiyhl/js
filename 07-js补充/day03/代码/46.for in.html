@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+      
+      // for in 会遍历对象自身及原型链上的可枚举属性,所以遍历对象最好还是用Object.keys(obj)
+      // Object.keys 会将对象自身的可枚举属性的 key 输出
+        function Person(name,age) {
+          this.name = name
+          this.age = age
+        }
+        let p = new Person('lhw',12)
+        Person.prototype.sex= '男'
+        for (const key in p) {
+          // obj.hasOwnProperty()是 Js 中唯一一个处理属性但是不查找原型链的函数
+          if (p.hasOwnProperty(key)) {
+            console.log(p[key],1111111111);
+          }
+          console.log(p[key],222222222222);
+        }
+
+        Object.keys(p).forEach(k => {
+          console.log(p[k],33333333333);
+        })
+    </script>
+</body>
+
+</html

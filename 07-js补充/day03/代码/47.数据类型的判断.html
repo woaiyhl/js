@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1.typeof只能判断基本类型数据和function，但是null返回的是object(历史遗留问题)
+      // 返回类型种类： string、number、boolean、undefined、symbol、object、function
+      let str = 'lhw'
+      let a = 1
+      let b = true
+      let c = undefined
+      let d = Symbol('ssss')
+      let e = null
+      let fn = function () {}
+      console.log(typeof str)
+      console.log(typeof a)
+      console.log(typeof b)
+      console.log(typeof c)
+      console.log(typeof d)
+      console.log(typeof e)
+      console.log(typeof fn)
+
+      //  2.instanceof 只能用来判断对象类型，基本类型不可以。并且所有对象类型 instanceof Object 都是 true
+      // 原理：基于对象的原型链，看是否是对象原型链的某个实例
+      console.log([] instanceof Array)
+      console.log([] instanceof Object)
+
+      // 3.Object.prototype.toString.call() 可以判断所有类型
+      function DataType(tgt, type) {
+        const dataType = Object.prototype.toString
+          .call(tgt)
+          .replace(/\[object (\w+)\]/, '$1')
+          .toLowerCase()
+        return type ? dataType === type : dataType
+      }
+      let reg = /abc/
+      console.log(DataType(reg, 'regexp'))
+    </script>
+  </body>
+</html>
