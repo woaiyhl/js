@@ -13,9 +13,9 @@
         // 边界符 ^ $ 
         var rg = /abc/; // 正则表达式里面不需要加引号 不管是数字型还是字符串型
         // /abc/ 只要包含有abc这个字符串返回的都是true
-        console.log(rg.test('abc'));
-        console.log(rg.test('abcd'));
-        console.log(rg.test('aabcd'));
+        console.log(rg.test('abc')); //true
+        console.log(rg.test('abcd')); //true
+        console.log(rg.test('aabcd')); //true
         console.log('---------------------------');
         var reg = /^abc/;
         console.log(reg.test('abc')); // true
@@ -27,6 +27,11 @@
         console.log(reg1.test('abcd')); // false
         console.log(reg1.test('aabcd')); // false
         console.log(reg1.test('abcabc')); // false
+
+        let reg2 = /[\.js | \.ts]$/
+        console.log(reg2.test('a.js'));  //true
+        console.log(reg2.test('a.ts'));  //true
+        console.log(reg2.test('a.tsx')); //false
     </script>
 </body>
 
