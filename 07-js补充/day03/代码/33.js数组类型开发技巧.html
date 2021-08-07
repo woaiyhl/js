@@ -27,7 +27,17 @@
   console.log(count, 'tttt');
   // count => { 0: 1, 1: 2, 2: 3 }
 
+  // 3.数组的解构赋值
+  const str = "1997,kangkang,boy,23"
+  const { 1: name, 2: sex, 0: age } = str.split(',')
+  console.log(name, sex, age) //kangkang boy 1997
 
+  // 4.展开运算符求最大值
+  // es5的
+  let arr1 = [1, 2, 3, 4, 5]
+  let max = Math.max.apply(null, arr1)
+  // es6展开运算符
+  let max1 = Math.max(...arr1)
 </script>
 
 </html>

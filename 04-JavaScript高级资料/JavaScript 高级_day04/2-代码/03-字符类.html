@@ -47,6 +47,12 @@
         console.log(reg2.test('-')); //false
         console.log(reg2.test('_')); //false
         console.log(reg2.test('!')); //true
+      
+        // \d 匹配数字 和 \D 匹配非数字(大写字母类似于中括号的^，表示取反)
+        // \d 等价于 [0-9], \D 等价于 [^0-9]
+
+        // \w 匹配字母、数字、下划线 和 \W 匹配 非字母、数字、下划线
+        //  \w 等价于 [a-zA-Z0-9_], \W 等价于 [^a-zA-Z0-9_]
     </script>
 </body>
 
