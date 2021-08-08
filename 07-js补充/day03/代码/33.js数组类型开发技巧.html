@@ -38,6 +38,12 @@
   let max = Math.max.apply(null, arr1)
   // es6展开运算符
   let max1 = Math.max(...arr1)
+
+  // 5.随机打乱数组顺序
+  let list = [1, 2, '蛙人', 1, 34, 3, 12]
+  let res = list.sort(() => Math.random() - 0.5)
+  console.log(res)
+
 </script>
 
 </html>
