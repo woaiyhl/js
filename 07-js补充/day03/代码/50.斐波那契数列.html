@@ -10,20 +10,6 @@
 
 <body>
   <script>
-    // 模拟sort方法: 冒泡排序+双重for循环+解构赋值
-    Array.prototype.mysort = function (fn) {
-      for (var i = 0; i < this.length; i++) {
-        for (var j = 0; j < this.length - 1 - i; j++) {
-          if (fn(this[j], this[j + 1]) > 0) {
-            [this[j + 1], this[j]] = [this[j], this[j + 1]]
-          }
-        }
-      }
-    }
-    var arr = [2, 4, 1, 3, 5];
-    arr.mysort((a, b) => a - b);
-    console.log(arr);
-
     // 斐波那契数列递归方法
     function fn(n) {
       if (n == 1 || n == 2) {

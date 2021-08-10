@@ -81,8 +81,18 @@
     }
     console.log(searchStrEach('sdsasads', 'd'));
 
-    // 5.原生递归实现深拷贝
+    // 5.生成5个随机数(1-10之间)
+    let arr = []
+    for (let i = 0; i < 5; i++) {
+      arr[i] = Math.floor(Math.random() * (10 - 1 + 1) + 1)
+      for (let j = 0; j < i; j++) {
+        if (arr[j] === arr[i]) {
+          i--;
+        }
+      }
+    }
 
+    // 原生递归实现深拷贝
   </script>
 </body>
 

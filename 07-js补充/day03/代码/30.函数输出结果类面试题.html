@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 分析各题执行结果
+
+    // 第一题
+    var n = 1;
+
+    function f1() {
+      console.log(n);
+    }
+
+    function f2() {
+      console.log(n); //1
+      n = 2;
+      f1();  //2
+      console.log(n); //2
+    }
+    f2();
+
+    // 第二题
+    var m = 1;
+
+    function f1() {
+      console.log(m);
+    }
+
+    function f3() {
+      function f2() {
+        f1(m);
+      }
+
+      f2();
+      var m = 3;
+    }
+    f3();
+
+    // 第三题
+    function fn(a) {
+      console.log(a);
+      a = 10;
+      console.log(a);
+    }
+    fn(1);
+
+    // 第四题
+    function fn(b) {
+      console.log(b);
+
+      function b() {
+        console.log(b);
+      }
+
+      b();
+    }
+    fn(1);
+
+    // 第五题
+    function fn(b) {
+      console.log(b);
+      b = function () {
+        console.log(b);
+      };
+      b();
+    }
+    fn(1);
+
+    // 第六题
+    function fn(b) {
+      console.log(b);
+      var b = function () {
+        console.log(b);
+      };
+      b();
+    }
+    fn(1);
+
+
+    // 第七题
+    name = "a";
+
+    function fn(name) {
+      var name = "b";
+
+      function fn1() {
+        var name = "c";
+        console.log(name);
+      }
+
+      function fn2() {
+        console.log(name);
+      }
+
+      fn1();
+      fn2();
+    }
+    fn(1);
+
+    // 第八题
+    var a = 10;
+
+    function test() {
+      a = 100;
+      console.log(a);
+      console.log(this.a);
+      var a;
+      console.log(a);
+    }
+    test();
+
+    // 第九题
+    function box(obj) {
+      obj.name = 'zs';
+      var obj = new Object();
+      obj.name = 'ls';
+    }
+    var obj = new Object();
+    box(obj);
+    console.log(obj.name);
+
+    // 第10题
+    var A = function () { };
+    A.prototype.n = 1;
+    var b = new A();
+    A.prototype = {
+      n: 2,
+      m: 3
+    };
+    var c = new A();
+    console.log(b.n);
+    console.log(b.m);
+    console.log(c.n);
+    console.log(c.m);
+
+    // 第11题
+    // var A = function () { };
+    // A.prototype.n = 1;
+    // var b = new A();
+    // A.prototype = {
+    //     n: 2,
+    //     m: 3
+    // };
+    // var c = new A();
+    // console.log(b.n);
+    // console.log(b.m);
+    // console.log(c.n);
+    // console.log(c.m);
+
+    var num1        // var num2 = 66;
+    function fn(num, num1) {
+      num = 100;
+      num1 = 100;
+      num2 = 100;
+      console.log(num); //
+      console.log(num1);  // 
+      console.log(num2); //100      
+    }
+    fn(num1, num2);
+    console.log(num1); //55
+    console.log(num2); //100
+    console.log(num); //error
+
+    // 第12题
+    var name = '李四'
+    var foo = {
+      name: "张三",
+      logName: function (age) {
+        console.log(this.name, age);
+      }
+    }
+    var fooNew = foo.logName;
+    var fooNewBind = foo.logName.bind(foo);
+    fooNew(10); //李四，10
+    fooNewBind(11); //张三  11
+
+
+    function test(person) {
+      person.age = 26
+      person = {
+        name: 'hzj',
+        age: 18
+      }
+      return person
+    }
+    const p1 = {
+      name: 'fyq',
+      age: 19
+    }
+    const p2 = test(p1)
+    console.log(p1) // -> ?
+    console.log(p2) // -> ?     
+    console.log(typeof Symbol());
+    console.log({
+      a: 1
+    } == true); //false
+    console.log({
+      a: 1
+    } == "[object Object]"); //true
+    function f1() {
+      var a = 2
+
+      function f2() {
+        console.log(a); //2
+      }
+      return f2;
+    }
+    var x = f1();
+    x();
+
+    var f3;
+    function f1() {
+      var a = 2
+      f3 = function () {
+        console.log(a);
+      }
+    }
+    f1();
+    f3();
+
+    //  第13题
+    function test(person) {
+      person.age = 26
+      person = {
+        name: 'hzj',
+        age: 18,
+      }
+      return person
+    }
+    const p1 = {
+      name: 'fyq',
+      age: 19,
+    }
+    const p2 = test(p1)
+    console.log(p1) // -> ?
+    console.log(p2) // -> ?
+      // 在函数传参的时候传递的是对象在堆中的内存地址值，test函数中的实参person是p1对象的内存地址，通过调用person.age = 26确实改变了p1的值，但随后person变成了另一块内存空间的地址，并且在最后将这另外一份内存空间的地址返回，赋给了p2。
+  </script>
+</body>
+
+</html>

@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      // 不可变性
-      // let student = {
-      //   firstName: 'testing',
-      //   lastName: 'testing',
-      //   marks: 500,
-      // }
 
-      // function changeName(student) {
-      //   // student.firstName = "testing11" //should not do it
-      //   // let copiedStudent = Object.assign({}, student) //浅拷贝
-      //   let copiedStudent = { ...student } //浅拷贝
-      //   copiedStudent.firstName = 'testing11'
-      //   return copiedStudent
-      // }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-      // console.log(changeName(student))
+<body>
+  <script>
+    // 不可变性
+    // let student = {
+    //   firstName: 'testing',
+    //   lastName: 'testing',
+    //   marks: 500,
+    // }
 
-      // console.log(student)
+    // function changeName(student) {
+    //   // student.firstName = "testing11" //should not do it
+    //   // let copiedStudent = Object.assign({}, student) //浅拷贝
+    //   let copiedStudent = { ...student } //浅拷贝
+    //   copiedStudent.firstName = 'testing11'
+    //   return copiedStudent
+    // }
 
-      // 高阶函数
-      const isYoung = (age) => age < 25
+    // console.log(changeName(student))
 
-      const message = (msg) => 'He is ' + msg
+    // console.log(student)
 
-      function isPersonOld(age, isYoung, message) {
-        const returnMessage = isYoung(age) ? message('young') : message('old')
-        return returnMessage
-      }
+    // 高阶函数
+    const isYoung = (age) => age < 25
 
-      // passing functions as an arguments
-      console.log(isPersonOld(13, isYoung, message))
-      // He is young
-    </script>
-  </body>
+    const message = (msg) => 'He is ' + msg
+
+    function isPersonOld(age, isYoung, message) {
+      const returnMessage = isYoung(age) ? message('young') : message('old')
+      return returnMessage
+    }
+
+    // passing functions as an arguments
+    console.log(isPersonOld(13, isYoung, message))
+    // He is young
+
+    // 函数式编程：
+    // 通过函数对数据进行转换
+    // 通过串联多个函数来求结果
+    var string = 'functional-programming-is-great';
+    var result = string
+      .split('-')
+      .map(v => v.slice(0, 1).toUpperCase() + v.slice(1))
+      .join(' ');
+    console.log(result);
+  </script>
+</body>
+
 </html>
