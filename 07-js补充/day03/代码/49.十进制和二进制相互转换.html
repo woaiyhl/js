@@ -21,7 +21,28 @@
     }
 
     // 方法二: 除以2取余法和利用栈这种数据结构
+    function dec2bin_2(decNumber) {
+      var temp = decNumber
+      var arr = new Array()
+      var b
+      if (decNumber % 1 == 0 && decNumber > 0) {
+        while (temp != 0) {
+          b = decNumber % 2
+          temp = parseInt(decNumber / 2)
+          decNumber = temp
+          arr.push(b)
+        }
+        arr = arr.reverse().toString().replace(/,/g, '')
+        return arr
+      } else {
+        console.log("请输入非负整数")
+      }
+    }
+    console.log(dec2bin_2(100));
 
+    // 2.二进制转换成十进制
+    let decNumber = 1110001
+    console.log(parseInt(decNumber, 2));
   </script>
 </body>
 
