@@ -1,109 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>FLIP动画</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
 
-      ul {
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        max-width: 500px;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>FLIP动画</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      li {
-        width: 50px;
-        height: 50px;
-        background-color: chocolate;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      }
-    </style>
-  </head>
+    ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 500px;
+    }
 
-  <body>
-    <div id="app">
-      <button @click="handleShuffle">shuffle</button>
-      <ul id="ul">
-        <li v-for="item in list" :key="item" :ref="item">{{ item }}</li>
-      </ul>
-    </div>
+    li {
+      width: 50px;
+      height: 50px;
+      background-color: chocolate;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
 
-    <!-- FLIP: first last invert play -->
-    <!-- https://cn.vuejs.org/v2/guide/transitions.html#%E5%88%97%E8%A1%A8%E7%9A%84%E6%8E%92%E5%BA%8F%E8%BF%87%E6%B8%A1 -->
-    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+<body>
+  <div id="app">
+    <button @click="handleShuffle">shuffle</button>
+    <ul id="ul">
+      <li v-for="item in list" :key="item" :ref="item">{{ item }}</li>
+    </ul>
+  </div>
 
-    <script>
-      const vm = new Vue({
-        el: '#app',
-        data: {
-          list: Array(50)
-            .fill(1)
-            .map((item, index) => index),
+  <!-- FLIP: first last invert play -->
+  <!-- https://cn.vuejs.org/v2/guide/transitions.html#%E5%88%97%E8%A1%A8%E7%9A%84%E6%8E%92%E5%BA%8F%E8%BF%87%E6%B8%A1 -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        list: Array(50)
+          .fill(1)
+          .map((item, index) => index),
+      },
+
+      methods: {
+        handleShuffle() {
+          this.list = _.shuffle(this.list)
         },
+      },
 
-        methods: {
-          handleShuffle() {
-            this.list = _.shuffle(this.list)
-          },
-        },
+      // mounted() {
+      //   setInterval(() => {
+      //     this.handleShuffle()
+      //   }, 1000)
+      // },
 
-        // mounted() {
-        //   setInterval(() => {
-        //     this.handleShuffle()
-        //   }, 1000)
-        // },
+      watch: {
+        list(newList, oldList) {
+          console.log('old', oldList)
+          console.log('new', newList)
 
-        watch: {
-          list(newList, oldList) {
-            console.log('old', oldList)
-            console.log('new', newList)
+          this.list.forEach(item => {
+            const li = this.$refs[item][0]
+            // 1. first
+            const first = li.getBoundingClientRect()
+            this.$nextTick(() => {
+              // 2. last
+              const last = li.getBoundingClientRect()
 
-            this.list.forEach(item => {
-              const li = this.$refs[item][0]
-              // 1. first
-              const first = li.getBoundingClientRect()
-              this.$nextTick(() => {
-                // 2. last
-                const last = li.getBoundingClientRect()
+              // 3. invert
+              const deltaX = first.left - last.left
+              const deltaY = first.top - last.top
+              const deltaW = first.width / last.width
+              const deltaH = first.height / last.height
 
-                // 3. invert
-                const deltaX = first.left - last.left
-                const deltaY = first.top - last.top
-                const deltaW = first.width / last.width
-                const deltaH = first.height / last.height
-
-                // 4. play 执行动画
-                // 动画使用transform实现
-                // https://developer.mozilla.org/zh-CN/docs/web/api/element/animate
-                li.animate(
-                  [
-                    { transform: ` translate(${deltaX}px, ${deltaY}px) scale(${deltaW}, ${deltaH}) ` },
-                    { transform: 'none' },
-                  ],
-                  { duration: 1000, easing: 'ease-in-out', fill: 'both' }
-                )
-              })
+              // 4. play 执行动画
+              // 动画使用transform实现
+              // https://developer.mozilla.org/zh-CN/docs/web/api/element/animate
+              li.animate(
+                [
+                  { transform: ` translate(${deltaX}px, ${deltaY}px) scale(${deltaW}, ${deltaH}) ` },
+                  { transform: 'none' },
+                ],
+                { duration: 1000, easing: 'ease-in-out', fill: 'both' }
+              )
             })
-          },
+          })
         },
-      })
-    </script>
-  </body>
-</html>
+      },
+    })
+  </script>
+</body>
 
+</html>
