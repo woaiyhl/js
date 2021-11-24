@@ -1,6 +1,5 @@
 const addMinutesToDate = (date, n) => {
   const d = new Date(date);
-  console.log(d.getTime(),'dd');
   d.setTime(d.getTime() + n * 60000);
   return d.toISOString().split('.')[0].replace('T',' ');
 };
