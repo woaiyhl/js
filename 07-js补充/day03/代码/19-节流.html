@@ -2,51 +2,51 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>节流</title>
-    <style>
-        html,
-        body {
-            height: 500%;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>节流</title>
+  <style>
+    html,
+    body {
+      height: 500%;
+    }
+  </style>
 </head>
 
 <body>
-    <script>
-        // 节流:一个需要被频繁触发的函数，在规定时间内，只让函数触发的第一次生效，后面不生效)。
-        //实现节流的方式有两种，定时器和时间戳
-        //法一: 定时器
-        function throttle(fn, delay) {
-            var timeout = null;
-            return function () {
-                if (!timeout) {
-                    timeout = setTimeout(function () {                      
-                        fn();
-                        timeout = null;
-                    }, delay)
-                }
-
-            }
+  <script>
+    // 节流:一个需要被频繁触发的函数，在规定时间内，只让函数触发的第一次生效，后面不生效)。
+    //实现节流的方式有两种，定时器和时间戳
+    //法一: 定时器
+    function throttle(fn, delay) {
+      var timeout = null;
+      return function () {
+        if (!timeout) {
+          timeout = setTimeout(function () {
+            fn();
+            timeout = null;
+          }, delay)
         }
-        //法二: 时间戳
-        // function throttle(fn,delay = 1000) {
-        //     let lastTime = 0;
-        //     return function () {
-        //         let nowTime = Date.now();
-        //         if(nowTime - lastTime > delay) {
-        //             fn();
-        //             lastTime = nowTime;
-        //         }
-        //     }
-        // }
-        document.onscroll = throttle(function () {
-            console.log('我爱你第'+ Date.now() +'次');
 
-        },1000)
-    </script>
+      }
+    }
+    //法二: 时间戳
+    function throttle(fn, delay = 1000) {
+      let lastTime = 0;
+      return function () {
+        let nowTime = Date.now();
+        if (nowTime - lastTime > delay) {
+          fn();
+          lastTime = nowTime;
+        }
+      }
+    }
+    document.onscroll = throttle(function () {
+      console.log('我爱你第' + Date.now() + '次');
+
+    }, 1000)
+  </script>
 </body>
 
 

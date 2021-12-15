@@ -10,28 +10,43 @@
 
 <body>
   <script>
-    // 斐波那契数列递归方法
-    function fn(n) {
-      if (n == 1 || n == 2) {
-        return 1
-      }
-      return fn(n - 1) + fn(n - 2);
-    }
-    console.log(fn(6));
     // for循环方法
-    function getFib(num) {
-      let n1 = 1
-      let n2 = 1
-      let n3
-      for (let i = 3; i <= num; i++) {
-        n3 = n1 + n2
-        n1 = n2
-        n2 = n3
-      }
-      return n3
-    }
-    console.log(getFib(8));
+    // function getFib(num) {
+    //   let n1 = 1
+    //   let n2 = 1
+    //   let n3
+    //   for (let i = 3; i <= num; i++) {
+    //     n3 = n1 + n2
+    //     n1 = n2
+    //     n2 = n3
+    //   }
+    //   return n3
+    // }
+    // console.log(getFib(8));
+    // // 1.斐波那契数列递归方法(没有使用尾递归优化)
+    // function fn(n) {
+    //   if (n == 1 || n == 2) {
+    //     return 1
+    //   }
+    //   return fn(n - 1) + fn(n - 2);
+    // }
+    // console.log(fn(6));
 
+    // 尾递归优化：对于尾递归来说，由于只存在一个调用帧，所以永远不会发生“栈溢出”错误
+    // 尾调用优化： 只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行“尾调用优化”
+    // 方式1
+    function Fibonacci2(n, ac1 = 1, ac2 = 1) {
+      if (n <= 2) { return ac2 };
+      return Fibonacci2(n - 1, ac2, ac1 + ac2);
+    }
+    console.log(Fibonacci2(5)); // 1 1 2 3 5
+
+    // 方式2 采用 ES6 的函数默认值实现尾调用优化
+    function Fibonacci3(n, ac1 = 1,ac2 = 1) {
+      if (n <= 2) return ac2;
+      return Fibonacci3(n - 1, ac2, ac1 + ac2);
+    }
+    console.log(Fibonacci3(7));
   </script>
 </body>
 
