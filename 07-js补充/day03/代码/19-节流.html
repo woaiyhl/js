@@ -19,29 +19,43 @@
     // 节流:一个需要被频繁触发的函数，在规定时间内，只让函数触发的第一次生效，后面不生效)。
     //实现节流的方式有两种，定时器和时间戳
     //法一: 定时器
-    function throttle(fn, delay) {
-      var timeout = null;
-      return function () {
-        if (!timeout) {
-          timeout = setTimeout(function () {
-            fn();
-            timeout = null;
-          }, delay)
-        }
+    // function throttle(fn, delay) {
+    //   var timeout = null;
+    //   return function () {
+    //     if (!timeout) {
+    //       timeout = setTimeout(function () {
+    //         fn();
+    //         timeout = null;
+    //       }, delay)
+    //     }
 
-      }
-    }
-    //法二: 时间戳
-    function throttle(fn, delay = 1000) {
-      let lastTime = 0;
+    //   }
+    // }
+    // //法二: 时间戳
+    // function throttle(fn, delay = 1000) {
+    //   let lastTime = 0;
+    //   return function () {
+    //     let nowTime = Date.now();
+    //     if (nowTime - lastTime > delay) {
+    //       fn();
+    //       lastTime = nowTime;
+    //     }
+    //   }
+    // }
+    // 法三： 节流阀
+    function throttle(fn) {
+      let canRun = true; // 通过闭包保存一个标记
       return function () {
-        let nowTime = Date.now();
-        if (nowTime - lastTime > delay) {
-          fn();
-          lastTime = nowTime;
-        }
-      }
+        if (!canRun) return; // 在函数开头判断标记是否为true，不为true则return
+        canRun = false; // 立即设置为false
+        setTimeout(() => { // 将外部传入的函数的执行放在setTimeout中
+          fn.apply(this, arguments);
+          // 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉
+          canRun = true;
+        }, 500);
+      };
     }
+
     document.onscroll = throttle(function () {
       console.log('我爱你第' + Date.now() + '次');
 

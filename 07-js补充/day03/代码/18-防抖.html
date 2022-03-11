@@ -2,35 +2,76 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>防抖</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>防抖</title>
 </head>
 
 <body>
-    <button id='btn'>按钮</button>
-    <script>
-        //防抖:一个需要被频繁触发的函数,在规定时间内，只让最后一次生效，前面的不生效。
-        function debounce(fn, delay) {
-            // 记录上一次的延时器
-            var timer = null;
-            return function () {
-                // 清除上一次延时器
-                clearTimeout(timer)
-                timer = setTimeout(() => {
-                    fn();
-                    console.log(this);
-                 } , delay)
-            }
+  <button id='btn'>按钮</button>
+  <script>
+    //防抖:一个需要被频繁触发的函数,在规定时间内，只让最后一次生效，前面的不生效。
+    // 基础版
+    function debounce(fn, delay) {
+      // 记录上一次的延时器
+      var timer = null;
+      return function () {
+        // 清除上一次延时器
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          fn();
+          console.log(this);
+        }, delay)
+      }
+    }
+    document.getElementById('btn').onclick = debounce(function () {
+      console.log('点击事件被触发' + Date.now())
+    }, 1000)
+    /* 在mousemove事件中，确保多次触发只调用一次监听函数
+       在表单校验的时候，不加防抖，依次输入user，就会分成u，us，use,user四次发出请求;
+       而添加防抖，设置好时间，可以实现完整输入user才发出校验请求 */
+    /**
+     * @param {Function} func
+     * @param {number} wait
+     * @param {boolean} immediate
+     * @return {*}
+     */
+    function debounce(func, wait, immediate) {
+      let timeout, args, context, timestamp, result
+
+      const later = function () {
+        // 据上一次触发时间间隔
+        const last = +new Date() - timestamp
+
+        // 上次被包装函数被调用时间间隔 last 小于设定时间间隔 wait
+        if (last < wait && last > 0) {
+          timeout = setTimeout(later, wait - last)
+        } else {
+          timeout = null
+          // 如果设定为immediate===true，因为开始边界已经调用过了此处无需调用
+          if (!immediate) {
+            result = func.apply(context, args)
+            if (!timeout) context = args = null
+          }
         }
-        document.getElementById('btn').onclick = debounce(function () {
-            console.log('点击事件被触发' + Date.now())
-        }, 1000)
-        /* 在mousemove事件中，确保多次触发只调用一次监听函数
-           在表单校验的时候，不加防抖，依次输入user，就会分成u，us，use,user四次发出请求;
-           而添加防抖，设置好时间，可以实现完整输入user才发出校验请求 */
-    </script>
+      }
+
+      return function (...args) {
+        context = this
+        timestamp = +new Date()
+        const callNow = immediate && !timeout
+        // 如果延时不存在，重新设定延时
+        if (!timeout) timeout = setTimeout(later, wait)
+        if (callNow) {
+          result = func.apply(context, args)
+          context = args = null
+        }
+
+        return result
+      }
+    }
+  </script>
 
 </body>
 

@@ -41,3 +41,23 @@
   border-bottom-color: #f66;
 }
 /*# sourceMappingURL=index.css.map */
+.arrow {
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid #867f7a;
+  border-left: 2px solid #867f7a;
+  margin-left: 50px;
+  margin-bottom: 30px;
+}
+.arrow.left {
+  transform: rotate(45deg);
+}
+.arrow.right {
+  transform: rotate(-135deg);
+}
+.arrow.top {
+  transform: rotate(135deg);
+}
+.arrow.bottom {
+  transform: rotate(-45deg);
+}
