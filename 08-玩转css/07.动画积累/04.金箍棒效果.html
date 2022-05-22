@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  div {
+    margin: 200px;
+    height: 20px;
+    border: 1px solid;
+    animation: rotate 2.5s infinite, color 2s infinite, width 3s infinite;
+    animation-direction: normal, normal, alternate;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes color {
+    20% {
+      background-color: #f91;
+    }
+
+    80% {
+      background-color: #0ff
+    }
+  }
+
+  @keyframes width {
+    0% {
+      width: 40%;
+    }
+
+    100% {
+      width: 70%;
+    }
+  }
+</style>
+
+<body>
+  <div></div>
+</body>
+
+</html>
