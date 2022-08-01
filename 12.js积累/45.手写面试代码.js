@@ -2,7 +2,6 @@
 function isType(data) {
   return Object.prototype.toString.call(data).replace(/\[object (\w+)\]/, '$1');
 }
-
 // 2.反转字符串
 // 法一
 function reverseStr(str) {
@@ -149,27 +148,27 @@ function throttle(fn, delay = 300) {
   };
 }
 // 定时器
-function throttle(fn,delay = 300) {
-  let timeout
+function throttle(fn, delay = 300) {
+  let timeout;
   return () => {
-    if(!timeout) {
+    if (!timeout) {
       timeout = setTimeout(() => {
-        fn.apply(this)
-        timeout = null
-      },delay)
+        fn.apply(this);
+        timeout = null;
+      }, delay);
     }
-  }
+  };
 }
 
 // 防抖
-function debounce(fn,delay = 300) {
-  let timeout
+function debounce(fn, delay = 300) {
+  let timeout;
   return () => {
-    timeout && clearTimeout(timeout)
+    timeout && clearTimeout(timeout);
     timeout = setTimeout(() => {
-      fn.apply(this)
-    },delay)
-  }
+      fn.apply(this);
+    }, delay);
+  };
 }
 // 12.promise
 Promise.all = function (arr) {
@@ -206,34 +205,37 @@ function sort(arr) {
       break;
     }
   }
-}e
+}
+e;
 // 14.两数之和
-var twoSum = function(nums, target) {
-  if(!nums) return [];
+var twoSum = function (nums, target) {
+  if (!nums) return [];
   // 创建字典表
   const m = new Map();
   // 遍历nums数组
-  for(let i = 0; i < nums.length; i++){
+  for (let i = 0; i < nums.length; i++) {
     // 获取当前值
     const n = nums[i];
     // 获取对当前与该值匹配的数值
     const n2 = target - nums[i];
     // 判断目标值是否在字典中
-    if(m.has(n2)){
+    if (m.has(n2)) {
       // 是，在返回目标值的坐标和当前数值的坐标
-      return [m.get(n2),i]
+      return [m.get(n2), i];
     }
     // 不在字典中，则放入字典，key为数值，value为下标
-    m.set(n,i)
+    m.set(n, i);
   }
 };
 
 //15.平铺的数组转tree
 function treeMap(arr, pid = 0) {
-  return arr.filter(item => item.pid === pid).map((item) => ({
-    ...item,
-    children: treeMap(arr, item.id)
-  }))
+  return arr
+    .filter((item) => item.pid === pid)
+    .map((item) => ({
+      ...item,
+      children: treeMap(arr, item.id),
+    }));
 }
 const input = [
   { id: 1, pid: 0 },
@@ -245,7 +247,7 @@ const input = [
   { id: 7, pid: 1 },
   { id: 8, pid: 4 },
 ];
-let output = treeMap(input)
+let output = treeMap(input);
 console.log(output);
 // const output = [
 //     {
