@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+<style>
+   .father {
+      width: 400px;
+      height: 400px;
+      background-color: red;
+      display: grid;
+   }
 
+   .son {
+     width: 100px;
+     height: 200px;
+     background-color: blue;
+   }
+</style>
 <body>
-    <a id="test" href="http://www.baidu.com">aaaa</a>
-  <script>
-const nest = (items, id = null, link = 'parent_id') =>
-  items.filter((item) => item[link] === id).map((item) => ({ ...item, children: nest(items, item.id) }));
-  const comments = [
-    { id: 1, parent_id: null },
-    { id: 2, parent_id: 1 },
-    { id: 3, parent_id: 1 },
-    { id: 4, parent_id: 2 },
-    { id: 5, parent_id: 4 }
-  ];
-  const nestedComments = nest(comments); // [{ id: 1, parent_id: null, children: [...] }]
-  console.log(nestedComments);
-  </script>
+  <div class="father">
+    <div class="son"></div>
+  </div>
 </body>
-
 </html>
