@@ -11,17 +11,17 @@
 <body>
   <script>
     // for循环方法
-    // function getFib(num) {
-    //   let n1 = 1
-    //   let n2 = 1
-    //   let n3
-    //   for (let i = 3; i <= num; i++) {
-    //     n3 = n1 + n2
-    //     n1 = n2
-    //     n2 = n3
-    //   }
-    //   return n3
-    // }
+    function getFib(num) {
+      let n1 = 1
+      let n2 = 1
+      let n3
+      for (let i = 3; i <= num; i++) {
+        n3 = n1 + n2
+        n1 = n2
+        n2 = n3
+      }
+      return n3
+    }
     // console.log(getFib(8));
     // // 1.斐波那契数列递归方法(没有使用尾递归优化)
     // function fn(n) {
@@ -42,7 +42,7 @@
     console.log(Fibonacci2(5)); // 1 1 2 3 5
 
     // 方式2 采用 ES6 的函数默认值实现尾调用优化
-    function Fibonacci3(n, ac1 = 1,ac2 = 1) {
+    function Fibonacci3(n, ac1 = 1, ac2 = 1) {
       if (n <= 2) return ac2;
       return Fibonacci3(n - 1, ac2, ac1 + ac2);
     }
