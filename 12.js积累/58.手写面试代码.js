@@ -68,7 +68,6 @@ function searchStrSplit(str, target) {
 }
 console.log(searchStrEach('sdsasads', 'd'));
 
-// 方法4:
 
 // 5.生成5个随机数(1-10之间)
 let arr = [];
@@ -111,6 +110,11 @@ function instanceOf(left, right) {
   }
 }
 // 9.new
+function New(Fun, ...args) {
+  let obj = Object.create(Fun.prototype)
+  let res = Fun.apply(obj, args)
+  return res === Object(res) ? res : obj
+}
 
 // 10.深浅拷贝
 // (1) 浅拷贝
@@ -273,3 +277,46 @@ console.log(output);
 //         ],
 //     },
 // ];
+
+// 16. 统计数组元素个数
+function calculateNum(arr) {
+  return arr.reduce((acc, cur) => {
+    acc[cur] = acc[cur] ? acc[cur]++ : 1
+    return acc
+  }, {})
+}
+
+// 17. redux 中compose实现源码
+function compose(...arr) {
+  return arr.reduce((acc, cur) => (...args) => acc(cur(...args)))
+}
+
+// 18.数组分割 [1,2,3,4,5] -> [[1,2],[3,4],[5]]
+function chunk(arr, size = 2) {
+  let res = Array.from({ length: Math.ceil(arr.length / size) }, (_, index) => [])
+  for (let i = 0; i < res.length; i++) {
+    res[i] = arr.slice(i * size, (1 + i) * size)
+  }
+  return res
+}
+
+// 19.有效括号  https://github.com/azl397985856/leetcode/blob/master/problems/20.valid-parentheses.md
+function isValid(str) {
+  let map = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+  }
+  let stack = []
+  for (let s of str) {
+    if (Object.keys(map).includes(s)) {
+      stack.push(s)
+    } else {
+      let pop = stack.pop()
+      if (map[pop] !== s) {
+        return false
+      }
+    }
+  }
+  return !stack.length
+}
