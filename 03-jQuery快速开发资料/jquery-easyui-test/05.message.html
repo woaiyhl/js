@@ -1,0 +1,46 @@
+<!--
+ * @Author: woaiyhl 2824054196@qq.com
+ * @Date: 2023-11-03 20:45:10
+ * @LastEditors: woaiyhl 2824054196@qq.com
+ * @LastEditTime: 2023-11-04 19:17:59
+ * @FilePath: /myCode/js/js/03-jQuery快速开发资料/jquery-test.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.10.17/themes/default/easyui.css">
+  <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.10.17/themes/icon.css">
+  <script type="text/javascript" src="../jquery-easyui-1.10.17/jquery.min.js"></script>
+  <script type="text/javascript" src="../jquery-easyui-1.10.17/jquery.easyui.min.js"></script>
+  <script type="text/javascript" src="../jquery-easyui-1.10.17/locale/easyui-lang-zh_CN.js"></script>
+
+  <a href="#" class="easyui-linkbutton" data-options="iconCls: 'icon-ok',onClick: test1">
+    点击
+  </a>
+
+  <script>
+    function test1() {
+      $.messager.confirm({
+        title: '我的消息',
+        msg: '消息将在5秒后关闭。',
+        timeout: 5000,
+        icon: 'error',
+        showType: 'slide',
+        fn(r) {
+          console.log(r, "窗口关闭了")
+        }
+      });
+    }
+
+  </script>
+</body>
+
+</html>

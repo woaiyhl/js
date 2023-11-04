@@ -1,0 +1,53 @@
+<!--
+ * @Author: woaiyhl 2824054196@qq.com
+ * @Date: 2023-11-03 20:45:10
+ * @LastEditors: woaiyhl 2824054196@qq.com
+ * @LastEditTime: 2023-11-04 15:36:12
+ * @FilePath: /myCode/js/js/03-jQuery快速开发资料/jquery-test.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.10.17/themes/material-blue/easyui.css">
+  <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.10.17/themes/icon.css">
+  <script type="text/javascript" src="../jquery-easyui-1.10.17/jquery.min.js"></script>
+  <script type="text/javascript" src="../jquery-easyui-1.10.17/jquery.easyui.min.js"></script>
+  <script type="text/javascript" src="../jquery-easyui-1.10.17/locale/easyui-lang-zh_CN.js"></script>
+
+  <div id="pn" class="easyui-panel" data-options="title: '我是标题啊',iconCls: 'icon-man',closable: true,collapsible: true,">
+    我是你爸爸</div>
+
+  <!-- 准备按钮 -->
+  <div id="tt">
+    <a href="#" class="easyui-linkbutton" data-options="iconcls: 'icon-man'">
+    </a>
+    <a href="#" class="easyui-linkbutton">
+      111
+    </a>
+  </div>
+  <div id="p2">我是你爸爸</div>
+
+  <script>
+    $("#p2").panel({
+      title: '成龙',
+      iconCls: 'icon-ok',
+      width: 600,
+      height: 1000,
+      closeable: true,
+      collapsible: true,
+      minimizable: true,
+      maximizable: true,
+      tools: '#tt', //引用按钮组
+    })
+  </script>
+</body>
+
+</html>

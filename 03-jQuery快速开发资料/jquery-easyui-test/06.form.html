@@ -1,0 +1,80 @@
+<!--
+ * @Author: woaiyhl 2824054196@qq.com
+ * @Date: 2023-11-03 20:45:10
+ * @LastEditors: woaiyhl 2824054196@qq.com
+ * @LastEditTime: 2023-11-04 21:57:36
+ * @FilePath: /myCode/js/js/03-jQuery快速开发资料/jquery-test.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.10.17/themes/default/easyui.css">
+  <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.10.17/themes/icon.css">
+  <script type="text/javascript" src="../jquery-easyui-1.10.17/jquery.min.js"></script>
+  <script type="text/javascript" src="../jquery-easyui-1.10.17/jquery.easyui.min.js"></script>
+  <script type="text/javascript" src="../jquery-easyui-1.10.17/locale/easyui-lang-zh_CN.js"></script>
+
+  <form action="#">
+    用户名：<input type="text" name="usename" id="username" />
+    <br />
+    年龄：<input type="text" name="age" id="age" />
+    <br />
+    生日：<input type="text" name="birth" id="birth" />
+    <br />
+    搜索 <input type="text" name="keyword" id="keyword" />
+    <br />
+    价格：<input type="text" name="price" id="price" />
+    <br />
+    日期：<input type="text" name="date" id="date" />
+    <br />
+    上传头像： <input type="text" name="file" id="file" />
+  </form>
+  <script>
+    // textbox
+    $("#username").textbox({
+      required: true,
+      missingMessage: "用户名不能为空",
+      validType: ['length[9,10]', 'url'],
+      multiline: true,
+      buttonText: '搜索',
+      buttonIcon: 'icon-search',
+      onClickButton() {
+        // 获得输入框内容
+        let value = $("#username").textbox("getValue")
+        $(this).textbox('clear')
+        console.log(value, this, $(this), 'vvvv')
+      }
+    })
+
+    // numberbox
+    $("#price").numberbox({
+      precision: 2,
+      min: 18,
+      value: 0,
+      suffix: '$',
+    })
+
+    // datebox
+    $("#date").datebox({
+
+    })
+
+    // filebox
+    $("#file").filebox({
+
+    })
+
+
+
+  </script>
+</body>
+
+</html>
