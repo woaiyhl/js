@@ -10,36 +10,43 @@
 
 <body>
   <script>
-    Array.prototype.myPush = function (...args) {
-      for (let i = 0; i < args.length; i++) {
-        this[this.length] = args[i]
-      }
-      return this.length
-    }
-    let arr = [1, 2, 3, 4, 5]
-    let len = arr.myPush(6, 7, 8)
-    Array.prototype.myFilter = function (fn) {
-      let res = []
-      for (let i = 0; i < this.length; i++) {
-        fn(this[i]) && res.push(this[i])
-      }
-      return res
-    }
+    var hasOwn = {}.hasOwnProperty;
+    function classNames() {
+      var classes = [];
 
-    Array.prototype.map = function (fn) {
-      if (typeof fn !== "function") {
-        throw Error('参数必须是一个函数');
+      for (var i = 0; i < arguments.length; i++) {
+        var arg = arguments[i];
+        if (!arg) continue;
+
+        var argType = typeof arg;
+
+        if (argType === 'string' || argType === 'number') {
+          classes.push(arg);
+        } else if (Array.isArray(arg)) {
+          if (arg.length) {
+            var inner = classNames.apply(null, arg);
+            if (inner) {
+              classes.push(inner);
+            }
+          }
+        } else if (argType === 'object') {
+          if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
+            classes.push(arg.toString());
+            continue;
+          }
+
+          for (var key in arg) {
+            if (hasOwn.call(arg, key) && arg[key]) {
+              classes.push(key);
+            }
+          }
+        }
       }
-      const res = [];
-      for (let i = 0, len = this.length; i < len; i++) {
-        res.push(fn(this[i]));
-      }
-      return res;
+
+      return classes.join(' ');
     }
-
-    let brr = arr.map(item => item * 2)
-    console.log(arr, brr)
-
+    const a = 'class3'
+    console.log(classNames('class1', ['class2', a], { class4: true, class5: false }, new Number(1)));
   </script>
 </body>
 

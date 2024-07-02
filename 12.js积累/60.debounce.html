@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+  <title>debounce</title>
+  <style>
+    #container {
+      width: 100%;
+      height: 200px;
+      line-height: 200px;
+      text-align: center;
+      color: #fff;
+      background-color: #444;
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+</body>
+<script>
+  function debounce(fn, wait = 300) {
+    let timeout;
+    return () => {
+      var context = this;
+      console.log(this, 'ttt')
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        fn.apply(context);
+        // fn()
+      }, wait);
+    }
+  }
+
+  var count = 1;
+  var container = document.getElementById('container');
+
+  function getUserAction() {
+    console.log(this, '222')
+    container.innerHTML = count++;
+  };
+
+
+  container.onmousemove = debounce(getUserAction);
+
+</script>
+
+</html>
